@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "path": {
+            "required": true,
+            "type": "string"
+        },
+        "fsaction": {
+            "required": true,
+            "type": "string"
+        },
+        "op": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "CHECKACCESS"
+            ]
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

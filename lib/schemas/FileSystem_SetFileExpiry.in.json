@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "properties": {
+        "path": {
+            "required": true,
+            "type": "string"
+        },
+        "expiryOption": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "NeverExpire",
+                "RelativeToNow",
+                "RelativeToCreationDate",
+                "Absolute"
+            ]
+        },
+        "expireTime": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "op": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "SETEXPIRY"
+            ]
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

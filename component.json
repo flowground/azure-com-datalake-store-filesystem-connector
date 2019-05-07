@@ -1,0 +1,96 @@
+{
+    "title": "DataLakeStoreFileSystemManagementClient",
+    "description": "Creates an Azure Data Lake Store filesystem client.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/datalake-store-filesystem/2016-11-01/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://azure.local/",
+                    "{accountName}.{adlsFileSystemDnsSuffix}",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "FileSystem_ConcurrentAppend": {
+            "main": "./lib/actions/FileSystem_ConcurrentAppend.js",
+            "title": "Appends to the specified file, optionally first creating the file if it does not yet exist. This method supports multiple concurrent appends to the file. NOTE: The target must not contain data added by Create or normal (serial) Append. ConcurrentAppend and Append cannot be used interchangeably; once a target file has been modified using either of these append options, the other append option cannot be used on the target file. ConcurrentAppend does not guarantee order and can result in duplicated data landing in the target file.",
+            "description": "Appends to the specified file, optionally first creating the file if it does not yet exist. This method supports multiple concurrent appends to the file. NOTE: The target must not contain data added by Create or normal (serial) Append. ConcurrentAppend and Append cannot be used interchangeably; once a target file has been modified using either of these append options, the other append option cannot be used on the target file. ConcurrentAppend does not guarantee order and can result in duplicated data landing in the target file.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/octet-stream": "application/octet-stream",
+                        "application/json": "application/json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FileSystem_ConcurrentAppend.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FileSystem_SetFileExpiry": {
+            "main": "./lib/actions/FileSystem_SetFileExpiry.js",
+            "title": "Sets or removes the expiration time on the specified file. This operation can only be executed against files. Folders are not supported.",
+            "description": "Sets or removes the expiration time on the specified file. This operation can only be executed against files. Folders are not supported.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FileSystem_SetFileExpiry.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "FileSystem_CheckAccess": {
+            "main": "./lib/actions/FileSystem_CheckAccess.js",
+            "title": "Checks if the specified access is available at the given path.",
+            "description": "Checks if the specified access is available at the given path.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/FileSystem_CheckAccess.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

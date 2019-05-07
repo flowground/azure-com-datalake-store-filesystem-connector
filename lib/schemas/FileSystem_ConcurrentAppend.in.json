@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "path": {
+            "required": true,
+            "type": "string"
+        },
+        "appendMode": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "autocreate"
+            ]
+        },
+        "op": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "CONCURRENTAPPEND"
+            ]
+        },
+        "syncFlag": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "DATA",
+                "METADATA",
+                "CLOSE"
+            ],
+            "default": "DATA"
+        },
+        "requestBody": {
+            "format": "file",
+            "type": "object"
+        },
+        "Transfer_Encoding": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "chunked"
+            ]
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
